@@ -1,15 +1,15 @@
 package com.dql.controller.listener;
 
+import com.dql.controller.MyListener;
 import com.dql.scheme.AppText;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * @author tr
  * @date 2020/12/18 18:58
  */
-public class ShowMemberListener extends MyListener{
+public class ShowMemberListener extends MyListener {
 
     /**
      * 必须要实现接口名

@@ -1,8 +1,5 @@
 package com.dql.controller;
 
-import com.dql.controller.listener.MyListener;
-
-import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,6 +8,18 @@ import java.util.List;
  * @date 2020/12/18 19:34
  */
 public class ListenerPool {
+
+    private static ListenerPool listenerPool = null;
+
+    public static ListenerPool getInstance() {
+        if (listenerPool==null) listenerPool = new ListenerPool();
+        return listenerPool;
+    }
+
+    private ListenerPool() {
+
+    }
+
     private List<MyListener> listeners = new LinkedList<>();
 
     public List<MyListener> getListeners() {

@@ -1,11 +1,10 @@
 package com.dql.controller;
 
-import com.dql.controller.listener.MyListener;
 import com.dql.controller.listener.ShowMemberListener;
 import com.dql.view.componet.IClickButton;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -14,14 +13,25 @@ import java.util.List;
  */
 public class ButtonListenerSetter {
 
-    private ListenerPool pool = new ListenerPool();
 
     /**
      * 所有的listener都要添加到这里
      * TODO 以后做个自动扫描注入包
      */
     public ButtonListenerSetter() {
-        pool.addListener(new ShowMemberListener());
+        //自动扫描包 添加对象
+        File file = new File("src/com/dql/controller/listener");
+        File[] list = file.listFiles();
+        for(int i=0;i<list.length;i++){
+            File f = list[i];
+            try {
+                MyListener cc = (MyListener) Class.forName("com.dql.controller.listener."+f.getName().replace(".java","")).newInstance();
+                ListenerPool.getInstance().addListener(cc);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+//        ListenerPool.getInstance().addListener(new ShowMemberListener());
     }
 
     /**
@@ -36,7 +46,7 @@ public class ButtonListenerSetter {
      * 通过监听名自动设置按钮监听
      */
     public void autoInjectListener(List<IClickButton> buttons) {
-        List<MyListener> listeners = this.pool.getListeners();
+        List<MyListener> listeners = ListenerPool.getInstance().getListeners();
         listeners.forEach(listener->{
                 buttons.stream().forEach(btn->{
                     if (btn.getListnerName().equals(listener.getListenerName())){
