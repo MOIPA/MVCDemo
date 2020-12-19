@@ -1,6 +1,5 @@
 package com.dql.view.impl;
 
-import com.dql.controller.ButtonListenerSetter;
 import com.dql.scheme.AppText;
 import com.dql.view.AppFrameAbstract;
 import com.dql.view.componet.IClickButton;
@@ -11,7 +10,6 @@ import com.dql.view.componet.impl.ClickButton;
  * @date 2020/12/18 17:37
  */
 public class AppFrameImpl extends AppFrameAbstract {
-
 
     /**
      * 初始化所有面板组件 添加入组件列表
@@ -26,7 +24,7 @@ public class AppFrameImpl extends AppFrameAbstract {
         // 设置按钮监听名
         btn.setListnerName(AppText.CLICK_SHOW_MEMBER_LISTENER.getValue());
         // 添加按钮到序列
-        this.frameComponents.add(btn);
+        this.componentPool.addClickButton(btn);
 
     }
 

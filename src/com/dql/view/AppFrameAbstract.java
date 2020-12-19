@@ -1,15 +1,7 @@
 package com.dql.view;
 
-import com.dql.controller.ButtonListenerSetter;
-import com.dql.scheme.AppSize;
-import com.dql.view.IAppFrame;
-import com.dql.view.componet.IClickButton;
-import com.dql.view.componet.MyComponent;
-
-import javax.swing.*;
-import java.awt.*;
-import java.util.LinkedList;
-import java.util.List;
+import com.dql.controller.ListenerSetter;
+import com.dql.view.componet.ComponentPool;
 
 /**
  * @author tr
@@ -19,28 +11,17 @@ import java.util.List;
  */
 public abstract class AppFrameAbstract implements IAppFrame {
 
-    protected List<IClickButton> frameComponents = null;
-    protected ButtonListenerSetter setter = null;
-    protected Container container = null;
-    protected JFrame mainFrame = new JFrame();
+    // 页面元素池
+    protected ComponentPool componentPool = null;
+    // 监听设置器
+    private ListenerSetter setter = null;
 
     /**
-     * 布局基础配置
-     * 改变初始设定
-     * 一般以后写代码 这边都不需要动了
+     * 初始化
      */
     public AppFrameAbstract() {
-        mainFrame.setTitle("management system");
-        mainFrame.setSize(AppSize.LARGGER_FRAME_WIDTH.getValue(), AppSize.LARGGER_FRAME_HEIGHT.getValue());
-        //置窗口是否可以关闭
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //设置窗口是否可见
-        mainFrame.setVisible(true);
-        // 初始化设置 组件容器和主布局
-        this.frameComponents = new LinkedList<>();
-        this.setter = new ButtonListenerSetter();
-        this.container = mainFrame.getContentPane();
-        this.container.setLayout(null);
+        setter = new ListenerSetter();
+        componentPool =  ComponentPool.getInstance(setter);
     }
 
 
@@ -56,8 +37,7 @@ public abstract class AppFrameAbstract implements IAppFrame {
      */
     public void injectFrame() {
         this.initViewComponent();
-        frameComponents.forEach(x->this.container.add(x.getComponent()));
-        this.setter.autoInjectListener(frameComponents);
+        this.setter.autoInjectButtonListener();
     }
 
 }

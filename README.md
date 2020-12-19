@@ -5,13 +5,13 @@
 
 #### 2.1 组件自动监听策略
 
-1. 定义单个监听器  ShowMemberListener为例，继承ActionListener 内部要写好监听器名字
+1. 定义页面元素组件池 ComponentPool 包含了ClickButtons 页面按钮队列 mainFrame 主页面框架 ，container 主页面容器
 
-2. 自动监听器  定义接口防止以后改动自动监听器，IListenerSetter内部设置了泛型，只有一个作用方法 设置监听
+2. 页面初始化的时候 会调用initViewComponent 初始化手动添加的按钮到ComponentPool中的ClickButtons
 
-3. 定义接口池 ListenerPool 以后所有新建的监听都可以放入
+3. 随后遍历ClickButtons的元素 添加到页面的Container中
 
-4. 实现自动化监听器  ButtonListenerSetter
+4. 随后调用ButtonListenerSetter 自动设置监听器的自动链接监听功能
 
 *代码改动区域*： 以后所有自定义的监听器都要放入
 
