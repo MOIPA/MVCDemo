@@ -19,6 +19,10 @@ public class DataAccessor {
         loadData();
     }
 
+    public List<User> getUserList() {
+        return userList;
+    }
+
     public static synchronized DataAccessor getInstance() {
         if (dataAccessor == null){
             dataAccessor = new DataAccessor();

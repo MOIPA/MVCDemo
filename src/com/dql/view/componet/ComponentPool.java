@@ -2,11 +2,14 @@ package com.dql.view.componet;
 
 import com.dql.controller.ListenerSetter;
 import com.dql.scheme.AppSize;
+import com.dql.view.componet.impl.MemberDialog;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 页面容器 容纳页面所有元素 包括主界面，页面所有按钮，页面所有容器
@@ -17,6 +20,8 @@ public class ComponentPool {
     public ListenerSetter setter = null;
     public Container container = null;
     public JFrame mainFrame = new JFrame();
+    public Map<String, IDialog> dialogMap = new HashMap<>();
+    public Map<String, JTable> tableMap = new HashMap<>();
 
     private ComponentPool(ListenerSetter setter) {
         container = mainFrame.getContentPane();
@@ -48,5 +53,28 @@ public class ComponentPool {
     public static ComponentPool getInstance(ListenerSetter setter) {
         if (componentPool == null) componentPool = new ComponentPool(setter);
         return componentPool;
+    }
+
+    public static ComponentPool getInstance() {
+        if (componentPool == null){
+            System.out.println("ERROR: 页面元素池未被初始化");
+        }
+        return componentPool;
+    }
+
+    /**
+     * 添加会话  默认添加至主容器
+     * @param dialogComponent
+     */
+    public void addDialog(IDialog dialogComponent) {
+        dialogComponent.initDialog(this.mainFrame);
+        dialogMap.put(dialogComponent.getDialogName(), dialogComponent);
+    }
+    /**
+     * 添加表格
+     * @param table
+     */
+    public void addTable(JTable table,String tableName) {
+        tableMap.put(tableName, table);
     }
 }

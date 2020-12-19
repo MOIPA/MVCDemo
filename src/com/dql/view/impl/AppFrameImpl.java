@@ -3,7 +3,11 @@ package com.dql.view.impl;
 import com.dql.scheme.AppText;
 import com.dql.view.AppFrameAbstract;
 import com.dql.view.componet.IClickButton;
+import com.dql.view.componet.IDialog;
 import com.dql.view.componet.impl.ClickButton;
+import com.dql.view.componet.impl.MemberDialog;
+
+import javax.swing.*;
 
 /**
  * @author tr
@@ -18,6 +22,10 @@ public class AppFrameImpl extends AppFrameAbstract {
      */
     @Override
     public void initViewComponent() {
+        initClickShowMember();
+    }
+
+    private void initClickShowMember() {
 
         // 查看用户按钮
         IClickButton btn = new ClickButton(AppText.CLICK_SHOW_MEMBER.getValue());
@@ -26,6 +34,13 @@ public class AppFrameImpl extends AppFrameAbstract {
         // 添加按钮到序列
         this.componentPool.addClickButton(btn);
 
+        // 按钮弹出框
+        IDialog dialogComponent = new MemberDialog("所有会员信息","展示会员会话");
+        this.componentPool.addDialog(dialogComponent);
+
+        // 展示会员表格
+        JTable table = new JTable();
+        componentPool.addTable(table,"会员列表");
     }
 
     /**

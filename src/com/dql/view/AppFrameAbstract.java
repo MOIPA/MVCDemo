@@ -20,8 +20,8 @@ public abstract class AppFrameAbstract implements IAppFrame {
      * 初始化
      */
     public AppFrameAbstract() {
-        setter = new ListenerSetter();
         componentPool =  ComponentPool.getInstance(setter);
+        setter = new ListenerSetter();
     }
 
 

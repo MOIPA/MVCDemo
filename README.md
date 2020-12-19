@@ -20,3 +20,8 @@ public ButtonListenerSetter() {
         pool.addListener(new ShowMemberListener());
 }
 ```
+
+#### 框架使用
+
+1. 以后写代码只需要在AppFrameImpl里定义按钮（按钮信息，按钮监听名），或者弹出框（弹出框的标题，弹出框名字）
+在controller.listener 层定义监听即可 （如 定义一个和某按钮监听名一样的监听，参考ShowmemberListener）
