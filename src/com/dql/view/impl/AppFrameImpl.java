@@ -26,7 +26,6 @@ public class AppFrameImpl extends AppFrameAbstract {
         // 设置按钮监听名
         btn.setListnerName(AppText.CLICK_SHOW_MEMBER_LISTENER.getValue());
         // 添加按钮到序列
-//        this.container.add(btn.getComponent());
         this.frameComponents.add(btn);
 
     }
@@ -35,8 +34,6 @@ public class AppFrameImpl extends AppFrameAbstract {
      * 不要动这里的代码
      */
     public AppFrameImpl() {
-        // 执行组件注入
-//        this.initViewComponent();
         // 注入 不用管
         this.injectFrame();
     }
