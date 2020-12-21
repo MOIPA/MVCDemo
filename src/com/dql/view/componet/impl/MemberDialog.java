@@ -1,7 +1,7 @@
 package com.dql.view.componet.impl;
 
-import com.dql.scheme.AppSize;
-import com.dql.scheme.AppText;
+import com.dql.I18.AppSize;
+import com.dql.I18.AppText;
 import com.dql.view.componet.IDialog;
 
 import javax.swing.*;

@@ -1,6 +1,6 @@
 package com.dql.view.componet.impl;
 
-import com.dql.scheme.AppSize;
+import com.dql.I18.AppSize;
 import com.dql.view.componet.IClickButton;
 
 import javax.swing.*;

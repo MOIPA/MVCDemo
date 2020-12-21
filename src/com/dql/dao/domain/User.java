@@ -5,21 +5,91 @@ package com.dql.dao.domain;
  */
 public class User {
     private String number = "";
-    private String nameOne = "";
-    private String nameTwo = "";
+    private String firstName = "";
+    private String lastName = "";
     private String date = "";
-    private String sex = "";
+    private String gender = "";
     private String address = "";
-    private String numberLast = "";
+    private String phone = "";
+    private String healthCondition = "";
+    private String allergy = "";
+    private String age = "";
+    private String memberStartTime = "";
+    private String memberEndTime = "";
+    private String memberType = "";
+    private String paidFee = "";
 
-    public User(String number, String nameOne, String nameTwo, String date, String sex, String address, String numberLast) {
+    public User(String number, String firstName, String lastName, String date, String gender, String address, String phone, String healthCondition, String allergy, String age, String memberStartTime, String memberEndTime, String memberType, String paidFee) {
         this.number = number;
-        this.nameOne = nameOne;
-        this.nameTwo = nameTwo;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.date = date;
-        this.sex = sex;
+        this.gender = gender;
         this.address = address;
-        this.numberLast = numberLast;
+        this.phone = phone;
+        this.healthCondition = healthCondition;
+        this.allergy = allergy;
+        this.age = age;
+        this.memberStartTime = memberStartTime;
+        this.memberEndTime = memberEndTime;
+        this.memberType = memberType;
+        this.paidFee = paidFee;
+    }
+
+    public String getHealthCondition() {
+        return healthCondition;
+    }
+
+    public void setHealthCondition(String healthCondition) {
+        this.healthCondition = healthCondition;
+    }
+
+    public String getAllergy() {
+        return allergy;
+    }
+
+    public void setAllergy(String allergy) {
+        this.allergy = allergy;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getMemberStartTime() {
+        return memberStartTime;
+    }
+
+    public void setMemberStartTime(String memberStartTime) {
+        this.memberStartTime = memberStartTime;
+    }
+
+    public String getMemberEndTime() {
+        return memberEndTime;
+    }
+
+    public void setMemberEndTime(String memberEndTime) {
+        this.memberEndTime = memberEndTime;
+    }
+
+    public String getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(String memberType) {
+        this.memberType = memberType;
+    }
+
+    public String getPaidFee() {
+        return paidFee;
+    }
+
+    public void setPaidFee(String paidFee) {
+        this.paidFee = paidFee;
     }
 
     public String getNumber() {
@@ -30,20 +100,20 @@ public class User {
         this.number = number;
     }
 
-    public String getNameOne() {
-        return nameOne;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setNameOne(String nameOne) {
-        this.nameOne = nameOne;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getNameTwo() {
-        return nameTwo;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setNameTwo(String nameTwo) {
-        this.nameTwo = nameTwo;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getDate() {
@@ -54,12 +124,12 @@ public class User {
         this.date = date;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getAddress() {
@@ -70,11 +140,11 @@ public class User {
         this.address = address;
     }
 
-    public String getNumberLast() {
-        return numberLast;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setNumberLast(String numberLast) {
-        this.numberLast = numberLast;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

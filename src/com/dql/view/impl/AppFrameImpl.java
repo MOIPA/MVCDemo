@@ -1,6 +1,6 @@
 package com.dql.view.impl;
 
-import com.dql.scheme.AppText;
+import com.dql.I18.AppText;
 import com.dql.view.AppFrameAbstract;
 import com.dql.view.componet.IClickButton;
 import com.dql.view.componet.IDialog;

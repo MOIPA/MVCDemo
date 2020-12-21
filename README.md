@@ -25,3 +25,10 @@ public ButtonListenerSetter() {
 
 1. 以后写代码只需要在AppFrameImpl里定义按钮（按钮信息，按钮监听名），或者弹出框（弹出框的标题，弹出框名字）
 在controller.listener 层定义监听即可 （如 定义一个和某按钮监听名一样的监听，参考ShowmemberListener）
+
+#### 技术说明
+
+1. 自动绑定实现原理：Java 内省反射机制
+2. 单例（懒汉模式）
+3. 泛化，继承，多态，封装
+4. I18 国际化 简单工厂模式

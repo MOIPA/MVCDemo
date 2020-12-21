@@ -3,7 +3,7 @@ package com.dql.controller.listener;
 import com.dql.controller.MyListener;
 import com.dql.dao.DataAccessor;
 import com.dql.dao.domain.User;
-import com.dql.scheme.AppText;
+import com.dql.I18.AppText;
 import com.dql.view.componet.ComponentPool;
 import com.dql.view.componet.IDialog;
 
@@ -38,7 +38,7 @@ public class ShowMemberListener extends MyListener {
         Object[] columnNames = {"姓名", "姓名"};
         List<User> userList = DataAccessor.getInstance().getUserList();
         // 表格所有行数据
-        List<String[]> collect = userList.stream().map(x -> new String[]{x.getNameOne(), x.getNameTwo()}).collect(Collectors.toList());
+        List<String[]> collect = userList.stream().map(x -> new String[]{x.getFirstName(), x.getLastName()}).collect(Collectors.toList());
         String[][] rowData = new String[userList.size()][2];
         for (int i = 0; i < rowData.length; i++) {
             rowData[i] = collect.get(i);

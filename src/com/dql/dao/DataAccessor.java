@@ -1,7 +1,7 @@
 package com.dql.dao;
 
 import com.dql.dao.domain.User;
-import com.dql.scheme.AppText;
+import com.dql.I18.AppText;
 
 import java.io.*;
 import java.util.LinkedList;

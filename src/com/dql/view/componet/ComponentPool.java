@@ -1,8 +1,7 @@
 package com.dql.view.componet;
 
 import com.dql.controller.ListenerSetter;
-import com.dql.scheme.AppSize;
-import com.dql.view.componet.impl.MemberDialog;
+import com.dql.I18.AppSize;
 
 import javax.swing.*;
 import java.awt.*;
