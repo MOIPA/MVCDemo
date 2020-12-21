@@ -147,4 +147,22 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return number + ',' +
+                firstName + ',' +
+                lastName + ',' +
+                date + ',' +
+                gender + ',' +
+                address + ',' +
+                phone + ',' +
+                healthCondition + ',' +
+                allergy + ',' +
+                age + ',' +
+                memberStartTime + ',' +
+                memberEndTime + ',' +
+                memberType + ',' +
+                paidFee;
+    }
 }
