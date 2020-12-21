@@ -9,6 +9,7 @@ public enum AppText {
      * 按钮信息
      */
     CLICK_SHOW_MEMBER("点击查看所有会员"),
+    MEMBER_MANAGEMENT("点击查看所有会员"),
     /**
      * 错误日志
      */

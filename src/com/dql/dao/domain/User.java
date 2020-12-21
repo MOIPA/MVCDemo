@@ -1,5 +1,7 @@
 package com.dql.dao.domain;
 
+import java.util.UUID;
+
 /**
  * 用户类
  */
@@ -19,7 +21,7 @@ public class User {
     private String memberType = "";
     private String paidFee = "";
 
-    public User(String number, String firstName, String lastName, String date, String gender, String address, String phone, String healthCondition, String allergy, String age, String memberStartTime, String memberEndTime, String memberType, String paidFee) {
+    public User(String number,String firstName, String lastName, String date, String gender, String address, String phone, String healthCondition, String allergy, String age, String memberStartTime, String memberEndTime, String memberType, String paidFee) {
         this.number = number;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,6 +36,12 @@ public class User {
         this.memberEndTime = memberEndTime;
         this.memberType = memberType;
         this.paidFee = paidFee;
+    }
+
+    public User(String firstName, String lastName) {
+        this.number = UUID.randomUUID().toString();
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public String getHealthCondition() {

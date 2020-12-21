@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * @Author dql
@@ -112,5 +113,47 @@ public class DataAccessor {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 修改用户
+     */
+    public void updateUserById(String number,User user) {
+        this.userList.forEach(x->{
+            if (x.getNumber().equals(number)) {
+                x = user;
+            }
+        });
+        reWriteData();
+    }
+
+    /**
+     * 修改用户会员信息
+     * @param number
+     * @param type
+     */
+    public void updateUserMemberType(String number, String type) {
+        this.userList.forEach(x->{
+            if (x.getNumber().equals(number)) {
+                x.setMemberType(type);
+            }
+        });
+        reWriteData();
+    }
+
+    /**
+     * 删除用户
+     */
+    public void deleteUserById(String number) {
+        this.userList = this.userList.stream().filter(x -> !x.getNumber().equals(number)).collect(Collectors.toList());
+        reWriteData();
+    }
+
+    /**
+     * 新增用户
+     */
+    public void addUser(User user) {
+        this.userList.add(user);
+        reWriteData();
     }
 }

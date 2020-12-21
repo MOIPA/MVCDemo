@@ -28,7 +28,7 @@ public class AppFrameImpl extends AppFrameAbstract {
     private void initClickShowMember() {
 
         // 查看用户按钮
-        IClickButton btn = new ClickButton(AppText.CLICK_SHOW_MEMBER.getValue());
+        IClickButton btn = new ClickButton(AppText.MEMBER_MANAGEMENT.getValue());
         // 设置按钮监听名
         btn.setListnerName(AppText.CLICK_SHOW_MEMBER_LISTENER.getValue());
         // 添加按钮到序列
