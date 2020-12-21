@@ -1,6 +1,7 @@
 package com.dql.view.componet.impl;
 
 import com.dql.I18.AppSize;
+import com.dql.I18.AppText;
 import com.dql.view.componet.IClickButton;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.awt.*;
  */
 public class ClickButton implements IClickButton {
     private JButton btn = null;
-    private String listenerName = "";
+    private Enum<AppText> listenerName = null;
 
     /**
      * 默认按钮
@@ -26,8 +27,9 @@ public class ClickButton implements IClickButton {
      * 默认按钮 可配置内容
      * @param text
      */
-    public ClickButton(String text) {
-        this.btn = new JButton(text);
+    public ClickButton(Enum<AppText> text) {
+        this.listenerName = text;
+        this.btn = new JButton(text.toString());
         btn.setBounds(AppSize.DEFAULT_LOCATION_X.getValue(), AppSize.DEFAULT_LOCATION_Y.getValue(), AppSize.BUTTON_WIDTH.getValue(), AppSize.BUTTON_HEIGHT.getValue());
     }
 
@@ -38,16 +40,18 @@ public class ClickButton implements IClickButton {
      * @param x
      * @param y
      */
-    public ClickButton(String text, int x, int y) {
-        this.btn = new JButton(text);
+    public ClickButton(Enum<AppText> text, int x, int y) {
+        this.listenerName = text;
+        this.btn = new JButton(text.toString());
         btn.setBounds(x, y, AppSize.BUTTON_WIDTH.getValue(), AppSize.BUTTON_HEIGHT.getValue());
     }
 
     /**
      * 普通按钮
      */
-    public ClickButton(String text, int x, int y,int width,int height) {
-        this.btn = new JButton(text);
+    public ClickButton(Enum<AppText> text, int x, int y,int width,int height) {
+        this.listenerName = text;
+        this.btn = new JButton(text.toString());
         btn.setBounds(x, y, width, height);
     }
 
@@ -65,12 +69,12 @@ public class ClickButton implements IClickButton {
     }
 
     @Override
-    public String getListnerName() {
+    public Enum<AppText> getListenerName() {
         return this.listenerName;
     }
 
     @Override
-    public String setListnerName(String text) {
-        return this.listenerName = text;
+    public void setListenerName(Enum<AppText> text) {
+        this.listenerName = text;
     }
 }

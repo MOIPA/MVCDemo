@@ -1,6 +1,5 @@
 package com.dql.controller;
 
-import com.dql.controller.listener.ShowMemberListener;
 import com.dql.view.componet.ComponentPool;
 import com.dql.view.componet.IClickButton;
 
@@ -38,12 +37,12 @@ public class ListenerSetter {
      */
     public void autoInjectButtonListener() {
         // 获取页面按钮
-        List<IClickButton> buttons = ComponentPool.getInstance(null).ClickButtons;
+        List<IClickButton> buttons = ComponentPool.getInstance(null).buttons;
         List<MyListener> listeners = ListenerPool.getInstance().getListeners();
         // 按名组装监听
         listeners.forEach(listener -> {
             buttons.stream().forEach(btn -> {
-                if (btn.getListnerName().equals(listener.getListenerName())) {
+                if (btn.getListenerName().equals(listener.getListenerName())) {
                     setListener(btn, listener);
                 }
             });

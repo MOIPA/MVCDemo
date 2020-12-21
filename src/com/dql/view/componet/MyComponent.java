@@ -1,5 +1,7 @@
 package com.dql.view.componet;
 
+import com.dql.I18.AppText;
+
 import java.awt.*;
 
 /**
@@ -9,7 +11,7 @@ import java.awt.*;
 public interface MyComponent {
     Component getComponent();
 
-    String getListnerName();
+    Enum<AppText> getListenerName();
 
-    String setListnerName(String text);
+    void setListenerName(Enum<AppText> text);
 }

@@ -15,7 +15,7 @@ public class MemberDialog implements IDialog {
 
     private JDialog dialog = null;
     private String title = "";
-    private String name = "";
+    private Enum<AppText> name = null;
 
     @Override
     public void initDialog(JFrame mainFrame) {
@@ -26,11 +26,10 @@ public class MemberDialog implements IDialog {
         dialog = new JDialog(mainFrame);
         dialog.setTitle(this.title);
         dialog.setSize(AppSize.DIALOG_WIDTH.getValue(), AppSize.DIALOG_HEIGHT.getValue());
-        Container container = dialog.getContentPane();
     }
 
     @Override
-    public String getDialogName() {
+    public Enum<AppText> getDialogName() {
         return name;
     }
 
@@ -44,7 +43,12 @@ public class MemberDialog implements IDialog {
         return this.dialog.getContentPane();
     }
 
-    public MemberDialog(String title,String name) {
+    @Override
+    public JDialog getDialogComponent() {
+        return this.dialog;
+    }
+
+    public MemberDialog(String title,Enum<AppText> name) {
         this.title = title;
         this.name = name;
     }

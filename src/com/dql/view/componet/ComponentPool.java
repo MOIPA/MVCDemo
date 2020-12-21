@@ -1,5 +1,6 @@
 package com.dql.view.componet;
 
+import com.dql.I18.AppText;
 import com.dql.controller.ListenerSetter;
 import com.dql.I18.AppSize;
 
@@ -15,12 +16,12 @@ import java.util.Map;
  */
 public class ComponentPool {
     private static ComponentPool componentPool = null;
-    public List<IClickButton> ClickButtons = null;
+    public List<IClickButton> buttons = null;
     public ListenerSetter setter = null;
     public Container container = null;
     public JFrame mainFrame = new JFrame();
-    public Map<String, IDialog> dialogMap = new HashMap<>();
-    public Map<String, JTable> tableMap = new HashMap<>();
+    public Map<Enum<AppText>, IDialog> dialogMap = new HashMap<>();
+    public Map<Enum<AppText>, JTable> tableMap = new HashMap<>();
 
     private ComponentPool(ListenerSetter setter) {
         container = mainFrame.getContentPane();
@@ -31,7 +32,7 @@ public class ComponentPool {
         //设置窗口是否可见
         mainFrame.setVisible(true);
         // 初始化设置 组件容器和主布局
-        this.ClickButtons = new LinkedList<>();
+        this.buttons = new LinkedList<>();
         this.setter = setter;
         this.container = mainFrame.getContentPane();
         this.container.setLayout(null);
@@ -45,8 +46,17 @@ public class ComponentPool {
      * @param btn
      */
     public void addClickButton(IClickButton btn) {
-        this.container.add(btn.getComponent());
-        this.ClickButtons.add(btn);
+        this.buttons.add(btn);
+    }
+
+    public IClickButton getClickButton(String buttonName) {
+        for (IClickButton btn :
+                this.buttons) {
+            if (btn.getListenerName().equals(buttonName)) {
+                return btn;
+            }
+        }
+        return null;
     }
 
     public static ComponentPool getInstance(ListenerSetter setter) {
@@ -65,7 +75,7 @@ public class ComponentPool {
      * 添加会话  默认添加至主容器
      * @param dialogComponent
      */
-    public void addDialog(IDialog dialogComponent) {
+    public void addDialogToMainFrame(IDialog dialogComponent) {
         dialogComponent.initDialog(this.mainFrame);
         dialogMap.put(dialogComponent.getDialogName(), dialogComponent);
     }
@@ -73,7 +83,21 @@ public class ComponentPool {
      * 添加表格
      * @param table
      */
-    public void addTable(JTable table,String tableName) {
+    public void addTable(JTable table,Enum<AppText> tableName) {
         tableMap.put(tableName, table);
+    }
+
+    /**
+     * 获取表格
+     */
+    public JTable getTable(Enum<AppText> tableName) {
+        return tableMap.get(tableName);
+    }
+
+    /**
+     * 获取会话框
+     */
+    public IDialog getDialog(Enum<AppText> dialogName) {
+        return dialogMap.get(dialogName);
     }
 }
