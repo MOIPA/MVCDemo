@@ -63,6 +63,9 @@ public class MmbrMngView implements IMmbrMngView {
         dialog.getContainer().add(btnAdd.getComponent());
         dialog.getContainer().add(btnDelete.getComponent());
         dialog.getContainer().add(btnChange.getComponent());
+
+        // 初始化点击注册按钮页面
+        initRegistView();
     }
 
     /**
