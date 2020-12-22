@@ -57,9 +57,11 @@ public class ConfirmRegistListener extends MyListener {
             JOptionPane.showMessageDialog(ComponentPool.getInstance().container, "Fee time is not filled");
             return;
         }
-        /**
-         *  访客没有结束时间 结束时间为使用次数
-         */
+        // 手机号重复
+        if (DataAccessor.getInstance().isExistByPhone(phone)) {
+            JOptionPane.showMessageDialog(ComponentPool.getInstance().container, "this phone is registed");
+            return;
+        }
         try {
             timesInt = Integer.parseInt(feeTimes);
             if (timesInt < 1) {
@@ -67,6 +69,7 @@ public class ConfirmRegistListener extends MyListener {
                 return;
             }
             age = Utils.calcAge(birthDate);
+            //  访客没有结束时间 结束时间为使用次数
             if (memberType.equals(AppText.VISITOR.toString())) {
                 endTime = feeTimes;
             }else{
@@ -165,6 +168,16 @@ public class ConfirmRegistListener extends MyListener {
         DataAccessor.getInstance().reWriteData();
         MmbrMngListener listener = (MmbrMngListener) ListenerPool.getInstance().getListener(AppText.MEMBER_MANAGEMENT);
         listener.refreshTable();
+        // 清空页面
+        // 清空页面
+        textFiled.get(0).setText("");
+        textFiled.get(1).setText("");
+        textFiled.get(2).setText("");
+        textFiled.get(3).setText("");
+        textFiled.get(4).setText("");
+        textFiled.get(5).setText("");
+        textFiled.get(6).setText("");
+        textFiled.get(7).setText("");
     }
 
 }

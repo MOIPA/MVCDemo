@@ -34,6 +34,10 @@ public class DataAccessor {
         return userList;
     }
 
+    public boolean isExistByPhone(String phone) {
+        return this.userList.stream().filter(x->x.getPhone().equals(phone.trim())).count()>0?true:false;
+    }
+
     public static synchronized DataAccessor getInstance() {
         if (dataAccessor == null) {
             dataAccessor = new DataAccessor();
