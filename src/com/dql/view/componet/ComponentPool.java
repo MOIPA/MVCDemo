@@ -43,6 +43,7 @@ public class ComponentPool {
 
     /**
      * 添加按钮入池  添加到页面容器
+     *
      * @param btn
      */
     public void addClickButton(IClickButton btn) {
@@ -65,7 +66,7 @@ public class ComponentPool {
     }
 
     public static ComponentPool getInstance() {
-        if (componentPool == null){
+        if (componentPool == null) {
             System.out.println("ERROR: 页面元素池未被初始化");
         }
         return componentPool;
@@ -73,17 +74,35 @@ public class ComponentPool {
 
     /**
      * 添加会话  默认添加至主容器
+     *
      * @param dialogComponent
      */
     public void addDialogToMainFrame(IDialog dialogComponent) {
         dialogComponent.initDialog(this.mainFrame);
         dialogMap.put(dialogComponent.getDialogName(), dialogComponent);
     }
+
+    /**
+     * 将会话添加至某一容器
+     *
+     * @param dialog
+     * @param panelName
+     */
+    public void addDialogToPanel(IDialog dialog, Enum<AppText> panelName) {
+        this.dialogMap.keySet().forEach(x -> {
+            if (dialogMap.get(x).getDialogName() == panelName) {
+                dialogMap.get(x).getDialog().add(dialog.getDialog());
+            }
+        });
+        dialogMap.put(dialog.getDialogName(), dialog);
+    }
+
     /**
      * 添加表格
+     *
      * @param table
      */
-    public void addTable(JTable table,Enum<AppText> tableName) {
+    public void addTable(JTable table, Enum<AppText> tableName) {
         tableMap.put(tableName, table);
     }
 

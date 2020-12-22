@@ -25,7 +25,7 @@ public class MemberDialog implements IDialog {
         }
         dialog = new JDialog(mainFrame);
         dialog.setTitle(this.title);
-        dialog.setSize(AppSize.DIALOG_WIDTH.getValue(), AppSize.DIALOG_HEIGHT.getValue());
+        dialog.setSize(AppSize.SHOW_MEMBER_DIALOG_WIDTH.getValue(), AppSize.SHOW_MEMBER_DIALOG_HEIGHT.getValue());
     }
 
     @Override
@@ -44,12 +44,22 @@ public class MemberDialog implements IDialog {
     }
 
     @Override
-    public JDialog getDialogComponent() {
+    public JDialog getDialog() {
         return this.dialog;
     }
 
-    public MemberDialog(String title,Enum<AppText> name) {
-        this.title = title;
+    @Override
+    public void addDialogToPanel(IDialog dialogComponent, Enum<AppText> panelName) {
+
+    }
+
+    @Override
+    public void setBounds(int x, int y, int width, int height) {
+        this.dialog.setBounds(x, y, width, height);
+    }
+
+    public MemberDialog(Enum<AppText> name) {
+        this.title = name.toString();
         this.name = name;
     }
 

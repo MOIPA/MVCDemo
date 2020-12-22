@@ -5,8 +5,7 @@ package com.dql;
  * @Date 2020/12/18
  */
 
-import com.dql.view.IAppFrame;
-import com.dql.view.impl.AppFrameImpl;
+import com.dql.view.AppFrameImpl;
 
 /**
  *

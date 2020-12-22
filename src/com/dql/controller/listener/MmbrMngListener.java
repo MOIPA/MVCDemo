@@ -21,33 +21,42 @@ import java.util.stream.Collectors;
  * @author tr
  * @date 2020/12/18 18:58
  */
-public class ShowMemberListener extends MyListener {
+public class MmbrMngListener extends MyListener {
 
     private ComponentPool componentPool = ComponentPool.getInstance();
+    private JTable table = null;
 
     /**
      * 必须要实现接口名
      */
-    public ShowMemberListener() {
+    public MmbrMngListener() {
         this.setListenerName(AppText.MEMBER_MANAGEMENT);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        this.table = componentPool.getTable(AppText.MEMBER_MANAGEMENT_TABLE);
         IDialog dialog = componentPool.getDialog(AppText.MEMBER_MANAGEMENT_TABLE);
-        JTable table = componentPool.getTable(AppText.MEMBER_MANAGEMENT_TABLE);
-
+        setTableData();
         dialog.setVisiable();
+    }
 
+    private void setTableData() {
         // 设置表格数据
-        Object[] columnNames = {"姓名", "姓名"};
+        Object[] columnNames = {"name", "phone", "member type", "end date"};
         List<User> userList = DataAccessor.getInstance().getUserList();
-        List<String[]> collect = userList.stream().map(x -> new String[]{x.getFirstName(), x.getLastName()}).collect(Collectors.toList());
-        String[][] rowData = new String[userList.size()][2];
+        List<String[]> collect = userList.stream().map(x -> new String[]{x.getFirstName() + x.getLastName(), x.getPhone(), x.getMemberType(), x.getMemberEndTime()}).collect(Collectors.toList());
+        String[][] rowData = new String[userList.size()][4];
         for (int i = 0; i < rowData.length; i++) {
             rowData[i] = collect.get(i);
         }
-        table.setModel(new DefaultTableModel(rowData,columnNames));
+        this.table.setModel(new DefaultTableModel(rowData, columnNames));
+    }
 
+    /**
+     * 刷新表格数据
+     */
+    public void refreshTable() {
+        setTableData();
     }
 }

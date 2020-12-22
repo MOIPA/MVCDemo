@@ -14,5 +14,9 @@ public interface IDialog {
 
     Container getContainer();
 
-    JDialog getDialogComponent();
+    JDialog getDialog();
+
+    void addDialogToPanel(IDialog dialogComponent, Enum<AppText> panelName);
+
+    void setBounds(int x, int y, int width, int height);
 }

@@ -10,7 +10,12 @@ public enum AppText {
      */
     CLICK_SHOW_MEMBER("点击查看所有会员"),
     MEMBER_MANAGEMENT("会员管理"),
-    ADD_MEMBER_MANAGEMENT("会员管理-新增会员"),
+    REGIST_MEMBER_MANAGEMENT("会员管理-注册会员"),
+    REGIST_MEMBER_MANAGEMENT_FIRSTNAME("first name"),
+    REGIST_MEMBER_MANAGEMENT_LASTNAME("last name"),
+    REGIST_MEMBER_MANAGEMENT_CONTACTPHONE("contact phone"),
+    REGIST_MEMBER_MANAGEMENT_MEMBERTYPE("choose member type"),
+    REGIST_MEMBER_MANAGEMENT_SUBMIT("confirm"),
     MEMBER_MANAGEMENT_TABLE("会员管理-会员表格"),
     DELETE_MEMBER_MANAGEMENT("会员管理-删除会员"),
     CHANGE_MEMBER_MANAGEMENT("会员管理-修改会员"),
