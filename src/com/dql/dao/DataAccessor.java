@@ -14,11 +14,20 @@ import java.util.stream.Collectors;
  */
 public class DataAccessor {
     private static DataAccessor dataAccessor = null;
+    private boolean isFamilyMember = false;
     private List<User> userList = null;
 
     private DataAccessor() {
         userList = new LinkedList<>();
         loadData();
+    }
+
+    public boolean isFamilyMember() {
+        return isFamilyMember;
+    }
+
+    public void setFamilyMember(boolean familyMember) {
+        isFamilyMember = familyMember;
     }
 
     public List<User> getUserList() {
@@ -46,13 +55,13 @@ public class DataAccessor {
                 }
                 // 第一次加载残缺数据情况下的初始化
                 if (res.length == 7) {
-                    userList.add(new User(res[0], res[1], res[2], res[3], res[4], res[5], res[6], "", "", "", "", "", "", ""));
+                    userList.add(new User(res[0], res[1], res[2], res[3], res[4], res[5], res[6], "", "", "", "", "", "", "", ""));
                 }
                 // 数据完整情况下 初始化
-                if (res.length == 14) {
+                if (res.length == 15) {
                     isIncompleteData = false;
                     userList.add(new User(res[0], res[1], res[2], res[3], res[4], res[5], res[6]
-                            , res[7], res[8], res[9], res[10], res[11], res[12], res[13]));
+                            , res[7], res[8], res[9], res[10], res[11], res[12], res[13], res[14]));
                 }
             }
             System.out.println(AppText.SUCCESS_LOG_PARSE_LINE.getValue() + userList.size());
@@ -72,10 +81,10 @@ public class DataAccessor {
      * 数据清洗 第一次加载残缺数据时调用
      */
     private void cleanData() {
-        System.out.println("LOG: 数据清洗开始，原始数据量："+this.userList.size());
+        System.out.println("LOG: 数据清洗开始，原始数据量：" + this.userList.size());
         // 去重
         List<User> cleanedUserList = new LinkedList<>();
-        this.userList.forEach(x->{
+        this.userList.forEach(x -> {
             if (cleanedUserList.stream().filter(item -> {
                 if ((item.getFirstName() + item.getLastName()).equals(x.getFirstName() + x.getLastName())) return true;
                 return false;
@@ -84,11 +93,11 @@ public class DataAccessor {
             }
         });
         // 赋值编号 抛弃原来的编号
-        cleanedUserList.forEach(x->{
+        cleanedUserList.forEach(x -> {
             x.setNumber(UUID.randomUUID().toString());
         });
         this.userList = cleanedUserList;
-        System.out.println("LOG: 数据清洗结束，清洗后数据量："+this.userList.size());
+        System.out.println("LOG: 数据清洗结束，清洗后数据量：" + this.userList.size());
         reWriteData();
     }
 
@@ -98,10 +107,9 @@ public class DataAccessor {
     public void reWriteData() {
         System.out.println("LOG: 数据回写");
         File dataFile = new File(AppText.DOC_LOCATION.getValue());
-        String line = "";
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(dataFile));
-            this.userList.forEach(x->{
+            this.userList.forEach(x -> {
                 try {
                     writer.write(x.toString());
                     writer.newLine();
@@ -118,8 +126,8 @@ public class DataAccessor {
     /**
      * 修改用户
      */
-    public void updateUserById(String number,User user) {
-        this.userList.forEach(x->{
+    public void updateUserById(String number, User user) {
+        this.userList.forEach(x -> {
             if (x.getNumber().equals(number)) {
                 x = user;
             }
@@ -129,11 +137,12 @@ public class DataAccessor {
 
     /**
      * 修改用户会员信息
+     *
      * @param number
      * @param type
      */
     public void updateUserMemberType(String number, String type) {
-        this.userList.forEach(x->{
+        this.userList.forEach(x -> {
             if (x.getNumber().equals(number)) {
                 x.setMemberType(type);
             }

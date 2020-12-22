@@ -2,6 +2,7 @@ package com.dql.controller.listener;
 
 import com.dql.I18.AppText;
 import com.dql.controller.MyListener;
+import com.dql.dao.DataAccessor;
 import com.dql.view.componet.ComponentPool;
 import com.dql.view.componet.IDialog;
 
@@ -26,6 +27,8 @@ public class AddMmbrListener extends MyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println("regist member");
+        DataAccessor.getInstance().setFamilyMember(false);
         IDialog dialog = componentPool.getDialog(AppText.REGIST_MEMBER_MANAGEMENT);
         dialog.setVisiable();
     }

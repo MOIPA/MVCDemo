@@ -22,6 +22,8 @@ public class ComponentPool {
     public JFrame mainFrame = new JFrame();
     public Map<Enum<AppText>, IDialog> dialogMap = new HashMap<>();
     public Map<Enum<AppText>, JTable> tableMap = new HashMap<>();
+    public Map<Enum<AppText>, JComboBox> selectBoxMap = new HashMap<>();
+    public Map<Enum<AppText>, List<JTextField>> textFieldHashMap = new HashMap<>();
 
     private ComponentPool(ListenerSetter setter) {
         container = mainFrame.getContentPane();
@@ -118,5 +120,19 @@ public class ComponentPool {
      */
     public IDialog getDialog(Enum<AppText> dialogName) {
         return dialogMap.get(dialogName);
+    }
+
+    public void addSelectBox(Enum<AppText> name,JComboBox<String> memberSelectBox) {
+        this.selectBoxMap.put(name, memberSelectBox);
+    }
+    public JComboBox getSelectBox(Enum<AppText> name) {
+        return this.selectBoxMap.get(name);
+    }
+
+    public void addTextFiledList(AppText name, List<JTextField> fieldList) {
+        this.textFieldHashMap.put(name, fieldList);
+    }
+    public List<JTextField> getTextFiledList(AppText name) {
+        return this.textFieldHashMap.get(name);
     }
 }

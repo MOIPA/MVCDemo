@@ -1,5 +1,7 @@
 package com.dql.controller;
 
+import com.dql.I18.AppText;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,17 +22,27 @@ public class ListenerPool {
 
     }
 
-    private List<MyListener> listeners = new LinkedList<>();
+    private List<IMyListener> listeners = new LinkedList<>();
 
-    public List<MyListener> getListeners() {
+    public List<IMyListener> getListeners() {
         return listeners;
     }
 
-    public void setListeners(List<MyListener> listeners) {
+    public IMyListener getListener(Enum<AppText> textEnum) {
+        for (IMyListener listener :
+                this.listeners) {
+            if (listener.getListenerName().equals(textEnum)) {
+                return listener;
+            }
+        }
+        return null;
+    }
+
+    public void setListeners(List<IMyListener> listeners) {
         this.listeners = listeners;
     }
 
-    public void addListener(MyListener listener) {
+    public void addListener(IMyListener listener) {
         this.listeners.add(listener);
     }
 }

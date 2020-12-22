@@ -38,6 +38,7 @@ public abstract class AppFrameAbstract implements IAppFrame {
     public void injectFrame() {
         this.initViewComponent();
         this.setter.autoInjectButtonListener();
+        this.setter.autoInjectSelectBoxListener();
     }
 
 }

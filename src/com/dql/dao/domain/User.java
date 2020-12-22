@@ -9,7 +9,7 @@ public class User {
     private String number = "";
     private String firstName = "";
     private String lastName = "";
-    private String date = "";
+    private String birthDate = "";
     private String gender = "";
     private String address = "";
     private String phone = "";
@@ -19,13 +19,14 @@ public class User {
     private String memberStartTime = "";
     private String memberEndTime = "";
     private String memberType = "";
-    private String paidFee = "";
+    private String familyTag = "";
+    private String feeType = "";
 
-    public User(String number,String firstName, String lastName, String date, String gender, String address, String phone, String healthCondition, String allergy, String age, String memberStartTime, String memberEndTime, String memberType, String paidFee) {
+    public User(String number, String firstName, String lastName, String birthDate, String gender, String address, String phone, String healthCondition, String allergy, String age, String memberStartTime, String memberEndTime, String memberType, String feeType, String familyTag) {
         this.number = number;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.date = date;
+        this.birthDate = birthDate;
         this.gender = gender;
         this.address = address;
         this.phone = phone;
@@ -35,13 +36,17 @@ public class User {
         this.memberStartTime = memberStartTime;
         this.memberEndTime = memberEndTime;
         this.memberType = memberType;
-        this.paidFee = paidFee;
+        this.feeType = feeType;
+        this.familyTag = familyTag;
     }
 
     public User(String firstName, String lastName) {
         this.number = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+    public User() {
+        this.number = UUID.randomUUID().toString();
     }
 
     public String getHealthCondition() {
@@ -92,12 +97,12 @@ public class User {
         this.memberType = memberType;
     }
 
-    public String getPaidFee() {
-        return paidFee;
+    public String getFeeType() {
+        return feeType;
     }
 
-    public void setPaidFee(String paidFee) {
-        this.paidFee = paidFee;
+    public void setFeeType(String feeType) {
+        this.feeType = feeType;
     }
 
     public String getNumber() {
@@ -124,12 +129,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getDate() {
-        return date;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getGender() {
@@ -156,12 +161,20 @@ public class User {
         this.phone = phone;
     }
 
+    public String getFamilyTag() {
+        return familyTag;
+    }
+
+    public void setFamilyTag(String familyTag) {
+        this.familyTag = familyTag;
+    }
+
     @Override
     public String toString() {
         return number + ',' +
                 firstName + ',' +
                 lastName + ',' +
-                date + ',' +
+                birthDate + ',' +
                 gender + ',' +
                 address + ',' +
                 phone + ',' +
@@ -171,6 +184,7 @@ public class User {
                 memberStartTime + ',' +
                 memberEndTime + ',' +
                 memberType + ',' +
-                paidFee;
+                feeType + ',' +
+                familyTag;
     }
 }

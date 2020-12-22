@@ -4,6 +4,8 @@ import com.dql.view.componet.ComponentPool;
 import com.dql.view.componet.IClickButton;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class ListenerSetter {
         for (int i = 0; i < list.length; i++) {
             File f = list[i];
             try {
-                MyListener cc = (MyListener) Class.forName("com.dql.controller.listener." + f.getName().replace(".java", "")).newInstance();
+                IMyListener cc = (IMyListener) Class.forName("com.dql.controller.listener." + f.getName().replace(".java", "")).newInstance();
                 ListenerPool.getInstance().addListener(cc);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -38,23 +40,38 @@ public class ListenerSetter {
     public void autoInjectButtonListener() {
         // 获取页面按钮
         List<IClickButton> buttons = ComponentPool.getInstance(null).buttons;
-        List<MyListener> listeners = ListenerPool.getInstance().getListeners();
+        List<IMyListener> listeners = ListenerPool.getInstance().getListeners();
         // 按名组装监听
         listeners.forEach(listener -> {
             buttons.stream().forEach(btn -> {
                 if (btn.getListenerName().equals(listener.getListenerName())) {
-                    setListener(btn, listener);
+                    setBtnListener(btn, listener);
                 }
             });
         });
     }
 
     /**
-     * 绑定监听
+     * 设置下拉监听
      */
-    private void setListener(IClickButton btn, MyListener listener) {
-        JButton jbtn = (JButton) btn.getComponent();
-        jbtn.addActionListener(listener);
+    public void autoInjectSelectBoxListener() {
+        // 获取页面按钮
+        List<IMyListener> listeners = ListenerPool.getInstance().getListeners();
+        listeners.forEach(x->{
+            JComboBox selectBox = ComponentPool.getInstance().getSelectBox(x.getListenerName());
+            if (selectBox!=null)setSelectBoxListener(selectBox,x);
+        });
     }
 
+    /**
+     * 绑定监听
+     */
+    private void setBtnListener(IClickButton btn, IMyListener listener) {
+        JButton jbtn = (JButton) btn.getComponent();
+        jbtn.addActionListener((ActionListener) listener);
+    }
+
+    private void setSelectBoxListener(JComboBox box, IMyListener listener) {
+        box.addItemListener((ItemListener) listener);
+    }
 }
