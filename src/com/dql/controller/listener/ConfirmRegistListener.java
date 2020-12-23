@@ -81,7 +81,7 @@ public class ConfirmRegistListener extends MyListener {
             return;
         } catch (Exception ce) {
             JOptionPane.showMessageDialog(ComponentPool.getInstance().container, "ERROR: create user failed ,fee times is not legal");
-            System.out.println("ERROR: create user failed ,fee times is not legal");
+            System.out.println("ERROR: create user failed ,fee times is not legal:"+feeTimes);
             return;
         }
 
@@ -177,7 +177,7 @@ public class ConfirmRegistListener extends MyListener {
         textFiled.get(4).setText("");
         textFiled.get(5).setText("");
         textFiled.get(6).setText("");
-        textFiled.get(7).setText("");
+//        textFiled.get(7).setText("");
     }
 
 }
