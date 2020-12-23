@@ -13,6 +13,7 @@ public enum AppText {
     MEMBER_MANAGEMENT_TABLE("会员管理-会员表格"),
     DELETE_MEMBER_MANAGEMENT("会员管理-删除会员"),
     CHANGE_MEMBER_MANAGEMENT("会员管理-修改会员"),
+    QUERY_MEMBER_MANAGEMENT("会员管理-查看会员"),
     /**
      * 注册会员输入框信息
      */

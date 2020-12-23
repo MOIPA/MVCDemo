@@ -24,6 +24,7 @@ public class MmbrMngView implements IMmbrMngView {
     private IClickButton btnAdd = null;
     private IClickButton btnDelete = null;
     private IClickButton btnChange = null;
+    private IClickButton btnShow = null;
     private JTable table = null;
     private IDialog dialog = null;
 
@@ -40,6 +41,7 @@ public class MmbrMngView implements IMmbrMngView {
             }
         };
         btnChange = new ClickButton(AppText.CHANGE_MEMBER_MANAGEMENT, AppSize.SHOW_MEMBER_DIALOG_WIDTH.getValue() - AppSize.SMALL_BUTTON_WIDTH.getValue() - 20, AppSize.SMALL_BUTTON_HEIGHT.getValue() * 2 + 40, AppSize.SMALL_BUTTON_WIDTH.getValue(), AppSize.SMALL_BUTTON_HEIGHT.getValue());
+        btnShow = new ClickButton(AppText.QUERY_MEMBER_MANAGEMENT, AppSize.SHOW_MEMBER_DIALOG_WIDTH.getValue() - AppSize.SMALL_BUTTON_WIDTH.getValue() - 20, AppSize.SMALL_BUTTON_HEIGHT.getValue() * 3 + 40, AppSize.SMALL_BUTTON_WIDTH.getValue(), AppSize.SMALL_BUTTON_HEIGHT.getValue());
     }
 
     /**
@@ -50,6 +52,7 @@ public class MmbrMngView implements IMmbrMngView {
         pool.addTable(table, AppText.MEMBER_MANAGEMENT_TABLE);
         // 会员按钮
         this.pool.addClickButton(btnAdd);
+        this.pool.addClickButton(btnShow);
         this.pool.addClickButton(btnDelete);
         this.pool.addClickButton(btnChange);
         // 组合
@@ -63,6 +66,7 @@ public class MmbrMngView implements IMmbrMngView {
         dialog.getContainer().add(btnAdd.getComponent());
         dialog.getContainer().add(btnDelete.getComponent());
         dialog.getContainer().add(btnChange.getComponent());
+        dialog.getContainer().add(btnShow.getComponent());
 
         // 初始化点击注册按钮页面
         initRegistView();
