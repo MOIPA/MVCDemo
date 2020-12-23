@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
 public class AddMmbrListener extends MyListener {
 
     private ComponentPool componentPool = ComponentPool.getInstance();
-    private JTable table = null;
 
     /**
      * 必须要实现接口名

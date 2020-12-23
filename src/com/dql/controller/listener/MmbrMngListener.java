@@ -45,10 +45,10 @@ public class MmbrMngListener extends MyListener {
 
     private void setTableData() {
         // 设置表格数据
-        Object[] columnNames = {"name", "phone", "member type", "end date","age"};
+        Object[] columnNames = {"ID","name", "phone", "member type", "end date","age"};
         List<User> userList = DataAccessor.getInstance().getUserList();
-        List<String[]> collect = userList.stream().map(x -> new String[]{x.getFirstName() + x.getLastName(), x.getPhone(), x.getMemberType(), x.getMemberEndTime(),x.getAge()}).collect(Collectors.toList());
-        String[][] rowData = new String[userList.size()][5];
+        List<String[]> collect = userList.stream().map(x -> new String[]{x.getNumber(),x.getFirstName() + x.getLastName(), x.getPhone(), x.getMemberType(), x.getMemberEndTime(),x.getAge()}).collect(Collectors.toList());
+        String[][] rowData = new String[userList.size()][6];
         for (int i = 0; i < rowData.length; i++) {
             rowData[i] = collect.get(i);
         }
