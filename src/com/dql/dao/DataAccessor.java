@@ -6,6 +6,7 @@ import com.dql.I18.AppText;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -15,11 +16,29 @@ import java.util.stream.Collectors;
 public class DataAccessor {
     private static DataAccessor dataAccessor = null;
     private boolean isFamilyMember = false;
+    private boolean isRegister = false;
+    private String userId = "";
     private List<User> userList = null;
 
     private DataAccessor() {
         userList = new LinkedList<>();
         loadData();
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public boolean isRegister() {
+        return isRegister;
+    }
+
+    public void setRegister(boolean register) {
+        isRegister = register;
     }
 
     public boolean isFamilyMember() {
@@ -130,12 +149,17 @@ public class DataAccessor {
     /**
      * 修改用户
      */
-    public void updateUserById(String number, User user) {
-        this.userList.forEach(x -> {
-            if (x.getNumber().equals(number)) {
-                x = user;
-            }
-        });
+    public void updateUserById(String number, User updateUser) {
+        User user = this.getUserById(number);
+        user.setFirstName(updateUser.getFirstName());
+        user.setAge(updateUser.getAge());
+        user.setLastName(updateUser.getLastName());
+        user.setPhone(updateUser.getPhone());
+        user.setBirthDate(updateUser.getBirthDate());
+        user.setAddress(updateUser.getAddress());
+        user.setHealthCondition(updateUser.getHealthCondition());
+        user.setAllergy(updateUser.getAllergy());
+        user.setGender(updateUser.getGender());
         reWriteData();
     }
 
@@ -168,5 +192,16 @@ public class DataAccessor {
     public void addUser(User user) {
         this.userList.add(user);
         reWriteData();
+    }
+
+    /**
+     * 获取用户
+     */
+    public User getUserById(String number) {
+        Optional<User> first = this.userList.stream().filter(x -> x.getNumber().equals(number)).findFirst();
+        if (first.isEmpty()) {
+            System.out.println("ERROR: no user found");
+        }
+        return first.get();
     }
 }

@@ -26,7 +26,8 @@ public class AddMmbrListener extends MyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("regist member");
+        DataAccessor.getInstance().setRegister(true);
+        System.out.println("LOG: regist member");
         DataAccessor.getInstance().setFamilyMember(false);
         IDialog dialog = componentPool.getDialog(AppText.REGIST_MEMBER_MANAGEMENT);
         dialog.setVisiable();
