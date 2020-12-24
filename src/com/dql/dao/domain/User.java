@@ -6,21 +6,21 @@ import java.util.UUID;
  * 用户类
  */
 public class User {
-    private String number = "";
-    private String firstName = "";
-    private String lastName = "";
-    private String birthDate = "";
-    private String gender = "";
-    private String address = "";
-    private String phone = "";
-    private String healthCondition = "";
-    private String allergy = "";
-    private String age = "";
-    private String memberStartTime = "";
-    private String memberEndTime = "";
-    private String memberType = "";
-    private String familyTag = "";
-    private String feeType = "";
+    private String number = "/";
+    private String firstName = "/";
+    private String lastName = "/";
+    private String birthDate = "/";
+    private String gender = "/";
+    private String address = "/";
+    private String phone = "/";
+    private String healthCondition = "/";
+    private String allergy = "/";
+    private String age = "/";
+    private String memberStartTime = "/";
+    private String memberEndTime = "/";
+    private String memberType = "/";
+    private String familyTag = "/";
+    private String feeType = "/";
 
     public User(String number, String firstName, String lastName, String birthDate, String gender, String address, String phone, String healthCondition, String allergy, String age, String memberStartTime, String memberEndTime, String memberType, String feeType, String familyTag) {
         this.number = number;
