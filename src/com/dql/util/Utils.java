@@ -1,6 +1,6 @@
 package com.dql.util;
 
-import com.dql.I18.AppText;
+import com.dql.I18.AppEnum;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -43,9 +43,9 @@ public class Utils {
     public static String calcEndTime(Date startTime, String kind, int times) {
         Calendar instance = Calendar.getInstance();
         instance.setTime(startTime);
-        if (kind == AppText.QUARTERLY_FEES.toString()) {
+        if (kind == AppEnum.QUARTERLY_FEES.toString()) {
             times *= 4;
-        } else if (kind == AppText.YEARLY_FEES.toString()) {
+        } else if (kind == AppEnum.YEARLY_FEES.toString()) {
             times *= 12;
         }
         instance.add(Calendar.MONTH, times);
@@ -62,23 +62,23 @@ public class Utils {
      */
     public static String calcFamilyMoney(String member, String kind, int times) {
         int baseMoney = 10;
-        if (member == AppText.PERSONAL.toString()) {
+        if (member == AppEnum.PERSONAL.toString()) {
             baseMoney = 36;
-        } else if (member == AppText.FAMILY.toString()) {
+        } else if (member == AppEnum.FAMILY.toString()) {
             baseMoney = 60;
-        } else if (member == AppText.VISITOR.toString()) {
+        } else if (member == AppEnum.VISITOR.toString()) {
             // 游客只有次数 times*money
             return "you choosed visitor set,total money is: " + baseMoney * times;
         }
-        if (kind == AppText.QUARTERLY_FEES.toString()) {
+        if (kind == AppEnum.QUARTERLY_FEES.toString()) {
             times *= 4;
-        } else if (kind == AppText.YEARLY_FEES.toString()) {
+        } else if (kind == AppEnum.YEARLY_FEES.toString()) {
             times *= 12;
         }
-        if (member == AppText.PERSONAL.toString()) {
+        if (member == AppEnum.PERSONAL.toString()) {
             baseMoney = 36;
             return "you choosed personal set,total money is: "+baseMoney*times;
-        } else if (member == AppText.FAMILY.toString()) {
+        } else if (member == AppEnum.FAMILY.toString()) {
             baseMoney = 60;
             return "you family personal set,total money is: "+baseMoney*times;
         }

@@ -1,10 +1,9 @@
 package com.dql.controller.listener;
 
-import com.dql.I18.AppText;
+import com.dql.I18.AppEnum;
 import com.dql.controller.ListenerPool;
 import com.dql.controller.MyListener;
 import com.dql.dao.DataAccessor;
-import com.dql.util.Utils;
 import com.dql.view.componet.ComponentPool;
 
 import javax.swing.*;
@@ -19,12 +18,12 @@ public class DeleteMmbrListener extends MyListener {
     private ComponentPool componentPool = ComponentPool.getInstance();
 
     public DeleteMmbrListener() {
-        this.setListenerName(AppText.DELETE_MEMBER_MANAGEMENT);
+        this.setListenerName(AppEnum.DELETE_MEMBER_MANAGEMENT);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JTable table = componentPool.getTable(AppText.MEMBER_MANAGEMENT_TABLE);
+        JTable table = componentPool.getTable(AppEnum.MEMBER_MANAGEMENT_TABLE);
         int selectedRow = table.getSelectedRow();
         String id = (String) table.getValueAt(selectedRow, 0);
         // 删除实体
@@ -35,7 +34,7 @@ public class DeleteMmbrListener extends MyListener {
             DataAccessor.getInstance().deleteUserById(id);
             System.out.println("LOG: 删除用户 id:" + id);
             // 刷新表格
-            MmbrMngListener listener = (MmbrMngListener) ListenerPool.getInstance().getListener(AppText.MEMBER_MANAGEMENT);
+            MmbrMngListener listener = (MmbrMngListener) ListenerPool.getInstance().getListener(AppEnum.MEMBER_MANAGEMENT);
             listener.refreshTable();
         }
     }

@@ -1,7 +1,7 @@
 package com.dql.view.componet.impl;
 
-import com.dql.I18.AppSize;
-import com.dql.I18.AppText;
+import com.dql.I18.SizeEnum;
+import com.dql.I18.AppEnum;
 import com.dql.view.componet.IClickButton;
 
 import javax.swing.*;
@@ -13,24 +13,24 @@ import java.awt.*;
  */
 public class ClickButton implements IClickButton {
     private JButton btn = null;
-    private Enum<AppText> listenerName = null;
+    private Enum<AppEnum> listenerName = null;
 
     /**
      * 默认按钮
      */
     public ClickButton() {
         this.btn = new JButton("默认点击按钮");
-        btn.setBounds(AppSize.DEFAULT_LOCATION_X.getValue(), AppSize.DEFAULT_LOCATION_Y.getValue(), AppSize.BUTTON_WIDTH.getValue(), AppSize.BUTTON_HEIGHT.getValue());
+        btn.setBounds(SizeEnum.DEFAULT_LOCATION_X.getValue(), SizeEnum.DEFAULT_LOCATION_Y.getValue(), SizeEnum.BUTTON_WIDTH.getValue(), SizeEnum.BUTTON_HEIGHT.getValue());
     }
 
     /**
      * 默认按钮 可配置内容
      * @param text
      */
-    public ClickButton(Enum<AppText> text) {
+    public ClickButton(Enum<AppEnum> text) {
         this.listenerName = text;
         this.btn = new JButton(text.toString());
-        btn.setBounds(AppSize.DEFAULT_LOCATION_X.getValue(), AppSize.DEFAULT_LOCATION_Y.getValue(), AppSize.BUTTON_WIDTH.getValue(), AppSize.BUTTON_HEIGHT.getValue());
+        btn.setBounds(SizeEnum.DEFAULT_LOCATION_X.getValue(), SizeEnum.DEFAULT_LOCATION_Y.getValue(), SizeEnum.BUTTON_WIDTH.getValue(), SizeEnum.BUTTON_HEIGHT.getValue());
     }
 
     /**
@@ -40,16 +40,16 @@ public class ClickButton implements IClickButton {
      * @param x
      * @param y
      */
-    public ClickButton(Enum<AppText> text, int x, int y) {
+    public ClickButton(Enum<AppEnum> text, int x, int y) {
         this.listenerName = text;
         this.btn = new JButton(text.toString());
-        btn.setBounds(x, y, AppSize.BUTTON_WIDTH.getValue(), AppSize.BUTTON_HEIGHT.getValue());
+        btn.setBounds(x, y, SizeEnum.BUTTON_WIDTH.getValue(), SizeEnum.BUTTON_HEIGHT.getValue());
     }
 
     /**
      * 普通按钮
      */
-    public ClickButton(Enum<AppText> text, int x, int y,int width,int height) {
+    public ClickButton(Enum<AppEnum> text, int x, int y, int width, int height) {
         this.listenerName = text;
         this.btn = new JButton(text.toString());
         btn.setBounds(x, y, width, height);
@@ -69,12 +69,12 @@ public class ClickButton implements IClickButton {
     }
 
     @Override
-    public Enum<AppText> getListenerName() {
+    public Enum<AppEnum> getListenerName() {
         return this.listenerName;
     }
 
     @Override
-    public void setListenerName(Enum<AppText> text) {
+    public void setListenerName(Enum<AppEnum> text) {
         this.listenerName = text;
     }
 }

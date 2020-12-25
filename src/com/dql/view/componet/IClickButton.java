@@ -1,6 +1,6 @@
 package com.dql.view.componet;
 
-import com.dql.I18.AppText;
+import com.dql.I18.AppEnum;
 
 import java.awt.*;
 
@@ -18,7 +18,7 @@ public interface IClickButton {
 
     Component getComponent();
 
-    Enum<AppText> getListenerName();
+    Enum<AppEnum> getListenerName();
 
-    void setListenerName(Enum<AppText> text);
+    void setListenerName(Enum<AppEnum> text);
 }

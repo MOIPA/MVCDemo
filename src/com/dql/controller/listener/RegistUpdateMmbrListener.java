@@ -1,21 +1,16 @@
 package com.dql.controller.listener;
 
-import com.dql.I18.AppText;
-import com.dql.controller.IMyListener;
+import com.dql.I18.AppEnum;
 import com.dql.controller.ListenerPool;
 import com.dql.controller.MyListener;
 import com.dql.dao.DataAccessor;
 import com.dql.dao.domain.User;
 import com.dql.util.Utils;
 import com.dql.view.componet.ComponentPool;
-import com.dql.view.view.MmbrMngRegistView;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +31,7 @@ public class RegistUpdateMmbrListener extends MyListener {
      * 必须要实现接口名
      */
     public RegistUpdateMmbrListener() {
-        this.setListenerName(AppText.REGIST_MEMBER_MANAGEMENT_SUBMIT);
+        this.setListenerName(AppEnum.REGIST_MEMBER_MANAGEMENT_SUBMIT);
     }
 
     @Override
@@ -52,10 +47,10 @@ public class RegistUpdateMmbrListener extends MyListener {
      * 更新逻辑
      */
     private void updateLogic() {
-        List<JTextField> textFiled = this.pool.getTextFiledList(AppText.REGIST_MEMBER_MANAGEMENT_FORM);
-        JComboBox feeSelectBox = this.pool.getSelectBox(AppText.REGIST_MEMBER_MANAGEMENT_FEE_TYPE);
-        JComboBox memberSelectBox = this.pool.getSelectBox(AppText.REGIST_MEMBER_MANAGEMENT_MEMBERTYPE);
-        JComboBox genderSelectBox = this.pool.getSelectBox(AppText.REGIST_MEMBER_MANAGEMENT_GENDER);
+        List<JTextField> textFiled = this.pool.getTextFiledList(AppEnum.REGIST_MEMBER_MANAGEMENT_FORM);
+        JComboBox feeSelectBox = this.pool.getSelectBox(AppEnum.REGIST_MEMBER_MANAGEMENT_FEE_TYPE);
+        JComboBox memberSelectBox = this.pool.getSelectBox(AppEnum.REGIST_MEMBER_MANAGEMENT_MEMBERTYPE);
+        JComboBox genderSelectBox = this.pool.getSelectBox(AppEnum.REGIST_MEMBER_MANAGEMENT_GENDER);
         String gender = (String) genderSelectBox.getSelectedItem();
         int age = 0;
 
@@ -86,7 +81,7 @@ public class RegistUpdateMmbrListener extends MyListener {
             memberSelectBox.setEditable(true);
             feeSelectBox.setEditable(true);
             // 刷新表格
-            MmbrMngListener listener = (MmbrMngListener) ListenerPool.getInstance().getListener(AppText.MEMBER_MANAGEMENT);
+            MmbrMngListener listener = (MmbrMngListener) ListenerPool.getInstance().getListener(AppEnum.MEMBER_MANAGEMENT);
             listener.refreshTable();
         }
 
@@ -96,10 +91,10 @@ public class RegistUpdateMmbrListener extends MyListener {
      * 执行注册逻辑
      */
     private void registerLogic() {
-        List<JTextField> textFiled = this.pool.getTextFiledList(AppText.REGIST_MEMBER_MANAGEMENT_FORM);
-        JComboBox feeSelectBox = this.pool.getSelectBox(AppText.REGIST_MEMBER_MANAGEMENT_FEE_TYPE);
-        JComboBox memberSelectBox = this.pool.getSelectBox(AppText.REGIST_MEMBER_MANAGEMENT_MEMBERTYPE);
-        JComboBox genderSelectBox = this.pool.getSelectBox(AppText.REGIST_MEMBER_MANAGEMENT_GENDER);
+        List<JTextField> textFiled = this.pool.getTextFiledList(AppEnum.REGIST_MEMBER_MANAGEMENT_FORM);
+        JComboBox feeSelectBox = this.pool.getSelectBox(AppEnum.REGIST_MEMBER_MANAGEMENT_FEE_TYPE);
+        JComboBox memberSelectBox = this.pool.getSelectBox(AppEnum.REGIST_MEMBER_MANAGEMENT_MEMBERTYPE);
+        JComboBox genderSelectBox = this.pool.getSelectBox(AppEnum.REGIST_MEMBER_MANAGEMENT_GENDER);
         String memberType = (String) memberSelectBox.getSelectedItem();
 
         String phone = textFiled.get(2).getText();
@@ -115,7 +110,7 @@ public class RegistUpdateMmbrListener extends MyListener {
         if (timesInt == -1) return;
         if (!checkPhone(phone)) return;
         //  访客没有结束时间 结束时间为使用次数
-        if (memberType.equals(AppText.VISITOR.toString())) {
+        if (memberType.equals(AppEnum.VISITOR.toString())) {
             endTime = feeTimes;
         } else {
             endTime = Utils.calcEndTime(new Date(), (String) feeSelectBox.getSelectedItem(), timesInt);
@@ -162,7 +157,7 @@ public class RegistUpdateMmbrListener extends MyListener {
             }
         }
         DataAccessor.getInstance().addUser(user);
-        if (memberType.equals(AppText.FAMILY.toString())) {
+        if (memberType.equals(AppEnum.FAMILY.toString())) {
             System.out.println(user.toString());
             if (!DataAccessor.getInstance().isFamilyMember()) {
                 user.setFamilyTag(user.getNumber());
@@ -216,8 +211,8 @@ public class RegistUpdateMmbrListener extends MyListener {
      */
     private void rewriteTableData() {
         // 回写数据
-        DataAccessor.getInstance().reWriteData();
-        MmbrMngListener listener = (MmbrMngListener) ListenerPool.getInstance().getListener(AppText.MEMBER_MANAGEMENT);
+        DataAccessor.getInstance().reWriteUserData();
+        MmbrMngListener listener = (MmbrMngListener) ListenerPool.getInstance().getListener(AppEnum.MEMBER_MANAGEMENT);
         listener.refreshTable();
     }
 

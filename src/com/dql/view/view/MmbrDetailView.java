@@ -1,11 +1,9 @@
 package com.dql.view.view;
 
-import com.dql.I18.AppText;
+import com.dql.I18.AppEnum;
 import com.dql.dao.domain.User;
 import com.dql.view.componet.ComponentPool;
-import com.dql.view.componet.IClickButton;
 import com.dql.view.componet.IDialog;
-import com.dql.view.componet.impl.ClickButton;
 import com.dql.view.componet.impl.MemberDialog;
 
 import javax.swing.*;
@@ -15,7 +13,7 @@ import java.awt.*;
  * @author tr
  * @date 2020/12/24 16:03
  */
-public class MmbrDetailView implements IMmbrDetailView{
+public class MmbrDetailView {
 
     private ComponentPool pool = null;
 
@@ -25,15 +23,16 @@ public class MmbrDetailView implements IMmbrDetailView{
 
     public void initView(User user) {
         // 注册会员会话框
-        IDialog dialog = new MemberDialog(AppText.QUERY_MEMBER_MANAGEMENT);
+        IDialog dialog = new MemberDialog(AppEnum.QUERY_MEMBER_MANAGEMENT);
         this.pool.addDialogToMainFrame(dialog);
+        dialog.getDialog().setLayout(null);
         dialog.setBounds(50, 50, 300, 600);
 
         // 输入会员信息面板 4行5列的表格
         JPanel panel = new JPanel(new BorderLayout());
         JPanel gridPanel = new JPanel(new GridLayout(15, 2, 0, 10));
         panel.add(gridPanel, BorderLayout.CENTER);
-
+        panel.setBounds(10,10,dialog.getDialog().getWidth()-30,dialog.getDialog().getHeight()-20);
         gridPanel.add(new Label("id:"));
         gridPanel.add(new Label(user.getNumber()));
         gridPanel.add(new Label("first name:"));

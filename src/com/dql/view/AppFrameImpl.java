@@ -1,14 +1,13 @@
 package com.dql.view;
 
-import com.dql.I18.AppText;
+import com.dql.I18.AppEnum;
+import com.dql.dao.DataAccessor;
 import com.dql.view.componet.IClickButton;
-import com.dql.view.componet.IDialog;
 import com.dql.view.componet.impl.ClickButton;
-import com.dql.view.componet.impl.MemberDialog;
+import com.dql.view.view.MmbrAccessView;
 import com.dql.view.view.MmbrMngView;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * @author tr
@@ -25,6 +24,8 @@ public class AppFrameImpl extends AppFrameAbstract {
     public void initViewComponent() {
         initMainView();
         new MmbrMngView().initView();
+        new MmbrAccessView().initView();
+        this.componentPool.mainFrame.repaint();
     }
 
     /**
@@ -32,11 +33,20 @@ public class AppFrameImpl extends AppFrameAbstract {
      */
     private void initMainView() {
         // 设置管理会员按钮
-        IClickButton btn = new ClickButton(AppText.MEMBER_MANAGEMENT);
+        IClickButton btnManagement = new ClickButton(AppEnum.MEMBER_MANAGEMENT);
+        IClickButton btnAccess = new ClickButton(AppEnum.MEMBER_ACCESS,30,160);
         // 设置按钮监听名
-        btn.setListenerName(AppText.MEMBER_MANAGEMENT);
-        this.componentPool.addClickButton(btn);
-        this.componentPool.container.add(btn.getComponent());
+        btnManagement.setListenerName(AppEnum.MEMBER_MANAGEMENT);
+        btnAccess.setListenerName(AppEnum.MEMBER_ACCESS);
+        this.componentPool.addClickButton(btnManagement);
+        this.componentPool.container.add(btnManagement.getComponent());
+        this.componentPool.addClickButton(btnAccess);
+        this.componentPool.container.add(btnAccess.getComponent());
+
+        JLabel accessNum = new JLabel("今日访问量:"+ DataAccessor.getInstance().getAccessNum());
+        accessNum.setBounds(30,240,100,40);
+        this.componentPool.addJlabel(AppEnum.MEMBER_ACCESS, accessNum);
+        this.componentPool.container.add(accessNum);
     }
 
 

@@ -1,6 +1,6 @@
 package com.dql.controller.listener;
 
-import com.dql.I18.AppText;
+import com.dql.I18.AppEnum;
 import com.dql.controller.MyListener;
 import com.dql.dao.DataAccessor;
 import com.dql.dao.domain.User;
@@ -20,13 +20,13 @@ public class UpdateMmbrListener extends MyListener {
     private ComponentPool pool = ComponentPool.getInstance();
 
     public UpdateMmbrListener() {
-        this.setListenerName(AppText.CHANGE_MEMBER_MANAGEMENT);
+        this.setListenerName(AppEnum.CHANGE_MEMBER_MANAGEMENT);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         // 获取选中用户
-        JTable table = pool.getTable(AppText.MEMBER_MANAGEMENT_TABLE);
+        JTable table = pool.getTable(AppEnum.MEMBER_MANAGEMENT_TABLE);
         int selectedRow = table.getSelectedRow();
         String id = (String) table.getValueAt(selectedRow, 0);
         DataAccessor.getInstance().setUserId(id);
@@ -36,16 +36,16 @@ public class UpdateMmbrListener extends MyListener {
         DataAccessor.getInstance().setRegister(false);
         System.out.println("LOG: update member");
         DataAccessor.getInstance().setFamilyMember(false);
-        IDialog dialog = pool.getDialog(AppText.REGIST_MEMBER_MANAGEMENT);
+        IDialog dialog = pool.getDialog(AppEnum.REGIST_MEMBER_MANAGEMENT);
         dialog.setVisiable();
         // 刷新表格
     }
 
     private void setDataOfRegistView() {
-        List<JTextField> textFiled = this.pool.getTextFiledList(AppText.REGIST_MEMBER_MANAGEMENT_FORM);
-        JComboBox feeSelectBox = this.pool.getSelectBox(AppText.REGIST_MEMBER_MANAGEMENT_FEE_TYPE);
-        JComboBox memberSelectBox = this.pool.getSelectBox(AppText.REGIST_MEMBER_MANAGEMENT_MEMBERTYPE);
-        JComboBox genderSelectBox = this.pool.getSelectBox(AppText.REGIST_MEMBER_MANAGEMENT_GENDER);
+        List<JTextField> textFiled = this.pool.getTextFiledList(AppEnum.REGIST_MEMBER_MANAGEMENT_FORM);
+        JComboBox feeSelectBox = this.pool.getSelectBox(AppEnum.REGIST_MEMBER_MANAGEMENT_FEE_TYPE);
+        JComboBox memberSelectBox = this.pool.getSelectBox(AppEnum.REGIST_MEMBER_MANAGEMENT_MEMBERTYPE);
+        JComboBox genderSelectBox = this.pool.getSelectBox(AppEnum.REGIST_MEMBER_MANAGEMENT_GENDER);
         String memberType = (String) memberSelectBox.getSelectedItem();
         String gender = (String) genderSelectBox.getSelectedItem();
         String feeType = (String) feeSelectBox.getSelectedItem();
@@ -61,7 +61,7 @@ public class UpdateMmbrListener extends MyListener {
         textFiled.get(7).setEditable(false);
         memberSelectBox.setEditable(false);
         feeSelectBox.setEditable(false);
-        if (user.getGender().equals(AppText.MALE.toString())) {
+        if (user.getGender().equals(AppEnum.MALE.toString())) {
             genderSelectBox.setSelectedIndex(0);
         }else{
             genderSelectBox.setSelectedIndex(1);

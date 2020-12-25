@@ -1,6 +1,6 @@
 package com.dql.controller;
 
-import com.dql.I18.AppText;
+import com.dql.I18.AppEnum;
 
 import java.awt.event.ActionListener;
 
@@ -9,15 +9,15 @@ import java.awt.event.ActionListener;
  * @date 2020/12/18 19:45
  */
 public abstract class MyListener implements ActionListener,IMyListener {
-    private Enum<AppText> listenerName = null;
+    private Enum<AppEnum> listenerName = null;
 
     @Override
-    public Enum<AppText> getListenerName() {
+    public Enum<AppEnum> getListenerName() {
         return listenerName;
     }
 
     @Override
-    public void setListenerName(Enum<AppText> listenerName) {
+    public void setListenerName(Enum<AppEnum> listenerName) {
         this.listenerName = listenerName;
     }
 }

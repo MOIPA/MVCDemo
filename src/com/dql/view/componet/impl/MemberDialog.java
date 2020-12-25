@@ -1,7 +1,7 @@
 package com.dql.view.componet.impl;
 
-import com.dql.I18.AppSize;
-import com.dql.I18.AppText;
+import com.dql.I18.SizeEnum;
+import com.dql.I18.AppEnum;
 import com.dql.view.componet.IDialog;
 
 import javax.swing.*;
@@ -15,21 +15,21 @@ public class MemberDialog implements IDialog {
 
     private JDialog dialog = null;
     private String title = "";
-    private Enum<AppText> name = null;
+    private Enum<AppEnum> name = null;
 
     @Override
     public void initDialog(JFrame mainFrame) {
         if (mainFrame == null) {
-            System.out.println(AppText.ERROR_LOG.getValue());
+            System.out.println(AppEnum.ERROR_LOG.getValue());
             return;
         }
         dialog = new JDialog(mainFrame);
         dialog.setTitle(this.title);
-        dialog.setSize(AppSize.SHOW_MEMBER_DIALOG_WIDTH.getValue(), AppSize.SHOW_MEMBER_DIALOG_HEIGHT.getValue());
+        dialog.setSize(SizeEnum.SHOW_MEMBER_DIALOG_WIDTH.getValue(), SizeEnum.SHOW_MEMBER_DIALOG_HEIGHT.getValue());
     }
 
     @Override
-    public Enum<AppText> getDialogName() {
+    public Enum<AppEnum> getDialogName() {
         return name;
     }
 
@@ -49,7 +49,7 @@ public class MemberDialog implements IDialog {
     }
 
     @Override
-    public void addDialogToPanel(IDialog dialogComponent, Enum<AppText> panelName) {
+    public void addDialogToPanel(IDialog dialogComponent, Enum<AppEnum> panelName) {
 
     }
 
@@ -58,7 +58,7 @@ public class MemberDialog implements IDialog {
         this.dialog.setBounds(x, y, width, height);
     }
 
-    public MemberDialog(Enum<AppText> name) {
+    public MemberDialog(Enum<AppEnum> name) {
         this.title = name.toString();
         this.name = name;
     }

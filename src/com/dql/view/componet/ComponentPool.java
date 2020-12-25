@@ -1,8 +1,8 @@
 package com.dql.view.componet;
 
-import com.dql.I18.AppText;
+import com.dql.I18.AppEnum;
 import com.dql.controller.ListenerSetter;
-import com.dql.I18.AppSize;
+import com.dql.I18.SizeEnum;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,15 +20,17 @@ public class ComponentPool {
     public ListenerSetter setter = null;
     public Container container = null;
     public JFrame mainFrame = new JFrame();
-    public Map<Enum<AppText>, IDialog> dialogMap = new HashMap<>();
-    public Map<Enum<AppText>, JTable> tableMap = new HashMap<>();
-    public Map<Enum<AppText>, JComboBox> selectBoxMap = new HashMap<>();
-    public Map<Enum<AppText>, List<JTextField>> textFieldHashMap = new HashMap<>();
+    public Map<Enum<AppEnum>, IDialog> dialogMap = new HashMap<>();
+    public Map<Enum<AppEnum>, JTable> tableMap = new HashMap<>();
+    public Map<Enum<AppEnum>, JComboBox> selectBoxMap = new HashMap<>();
+    public Map<Enum<AppEnum>, JLabel> labelMap = new HashMap<>();
+    public Map<Enum<AppEnum>, List<JTextField>> textFieldHashMap = new HashMap<>();
 
     private ComponentPool(ListenerSetter setter) {
+//        mainFrame = new JFrame();
         container = mainFrame.getContentPane();
         mainFrame.setTitle("management system");
-        mainFrame.setSize(AppSize.LARGGER_FRAME_WIDTH.getValue(), AppSize.LARGGER_FRAME_HEIGHT.getValue());
+        mainFrame.setSize(SizeEnum.SMALLER_FRAME_WIDTH.getValue(), SizeEnum.MEDIUM_FRAME_HEIGHT.getValue());
         //置窗口是否可以关闭
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //设置窗口是否可见
@@ -90,7 +92,7 @@ public class ComponentPool {
      * @param dialog
      * @param panelName
      */
-    public void addDialogToPanel(IDialog dialog, Enum<AppText> panelName) {
+    public void addDialogToPanel(IDialog dialog, Enum<AppEnum> panelName) {
         this.dialogMap.keySet().forEach(x -> {
             if (dialogMap.get(x).getDialogName() == panelName) {
                 dialogMap.get(x).getDialog().add(dialog.getDialog());
@@ -104,35 +106,42 @@ public class ComponentPool {
      *
      * @param table
      */
-    public void addTable(JTable table, Enum<AppText> tableName) {
+    public void addTable(JTable table, Enum<AppEnum> tableName) {
         tableMap.put(tableName, table);
     }
 
     /**
      * 获取表格
      */
-    public JTable getTable(Enum<AppText> tableName) {
+    public JTable getTable(Enum<AppEnum> tableName) {
         return tableMap.get(tableName);
     }
 
     /**
      * 获取会话框
      */
-    public IDialog getDialog(Enum<AppText> dialogName) {
+    public IDialog getDialog(Enum<AppEnum> dialogName) {
         return dialogMap.get(dialogName);
     }
 
-    public void addSelectBox(Enum<AppText> name,JComboBox<String> memberSelectBox) {
+    public void addSelectBox(Enum<AppEnum> name, JComboBox<String> memberSelectBox) {
         this.selectBoxMap.put(name, memberSelectBox);
     }
-    public JComboBox getSelectBox(Enum<AppText> name) {
+    public JComboBox getSelectBox(Enum<AppEnum> name) {
         return this.selectBoxMap.get(name);
     }
 
-    public void addTextFiledList(AppText name, List<JTextField> fieldList) {
+    public void addTextFiledList(AppEnum name, List<JTextField> fieldList) {
         this.textFieldHashMap.put(name, fieldList);
     }
-    public List<JTextField> getTextFiledList(AppText name) {
+    public List<JTextField> getTextFiledList(AppEnum name) {
         return this.textFieldHashMap.get(name);
+    }
+
+    public void addJlabel(AppEnum memberAccess, JLabel accessNum) {
+        this.labelMap.put(memberAccess, accessNum);
+    }
+    public JLabel getJlabel(AppEnum memberAccess) {
+        return this.labelMap.get(memberAccess);
     }
 }

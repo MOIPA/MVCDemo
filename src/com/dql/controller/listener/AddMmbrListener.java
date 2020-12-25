@@ -1,12 +1,11 @@
 package com.dql.controller.listener;
 
-import com.dql.I18.AppText;
+import com.dql.I18.AppEnum;
 import com.dql.controller.MyListener;
 import com.dql.dao.DataAccessor;
 import com.dql.view.componet.ComponentPool;
 import com.dql.view.componet.IDialog;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 /**
@@ -21,7 +20,7 @@ public class AddMmbrListener extends MyListener {
      * 必须要实现接口名
      */
     public AddMmbrListener() {
-        this.setListenerName(AppText.REGIST_MEMBER_MANAGEMENT);
+        this.setListenerName(AppEnum.REGIST_MEMBER_MANAGEMENT);
     }
 
     @Override
@@ -29,7 +28,7 @@ public class AddMmbrListener extends MyListener {
         DataAccessor.getInstance().setRegister(true);
         System.out.println("LOG: regist member");
         DataAccessor.getInstance().setFamilyMember(false);
-        IDialog dialog = componentPool.getDialog(AppText.REGIST_MEMBER_MANAGEMENT);
+        IDialog dialog = componentPool.getDialog(AppEnum.REGIST_MEMBER_MANAGEMENT);
         dialog.setVisiable();
     }
 

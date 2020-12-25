@@ -1,6 +1,6 @@
 package com.dql.controller.listener;
 
-import com.dql.I18.AppText;
+import com.dql.I18.AppEnum;
 import com.dql.controller.MyListener;
 import com.dql.dao.DataAccessor;
 import com.dql.dao.domain.User;
@@ -19,13 +19,13 @@ public class ShowMmbrListener extends MyListener {
     private ComponentPool pool = ComponentPool.getInstance();
 
     public ShowMmbrListener() {
-        this.setListenerName(AppText.QUERY_MEMBER_MANAGEMENT);
+        this.setListenerName(AppEnum.QUERY_MEMBER_MANAGEMENT);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("clicked");
-        JTable table = pool.getTable(AppText.MEMBER_MANAGEMENT_TABLE);
+        JTable table = pool.getTable(AppEnum.MEMBER_MANAGEMENT_TABLE);
         int selectedRow = table.getSelectedRow();
         String id = (String) table.getValueAt(selectedRow, 0);
         User user = DataAccessor.getInstance().getUserById(id);

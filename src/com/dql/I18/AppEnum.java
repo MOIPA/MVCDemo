@@ -4,10 +4,14 @@ package com.dql.I18;
  * @author tr
  * @date 2020/12/18 17:44
  */
-public enum AppText {
+public enum AppEnum {
     /**
      * 按钮信息
      */
+    MEMBER_ACCESS("会员访问"),
+    MEMBER_ACCESS_CONFIRM("会员访问-确认访问"),
+    MEMBER_ACCESS_SELECT("会员访问-设备选择"),
+    MEMBER_ACCESS_INPUT("会员访问-手机号输入"),
     MEMBER_MANAGEMENT("会员管理"),
     REGIST_MEMBER_MANAGEMENT("会员管理-注册会员"),
     MEMBER_MANAGEMENT_TABLE("会员管理-会员表格"),
@@ -52,10 +56,11 @@ public enum AppText {
      */
     ERROR_LOG("component log error: mainFrame is null!"),
     DOC_LOCATION("src/customerlist.csv"), ERROR_LOG_PARSE_LINE("ERROR: 数据不充足 无法解析："),
+    LOG_LOCATION("src/accessLog.csv"),
     SUCCESS_LOG_PARSE_LINE("SUCCESS: 数据解析完毕 数据量："), ERROR_LOG_NOT_FOUND("ERROR: 未找到目标文件"), ERROR_LOG_IO("ERROR: 文件读写错误 请检查文件内容是否正确");
     private String value;
 
-    private AppText(String value) {
+    private AppEnum(String value) {
         this.value = value;
     }
 

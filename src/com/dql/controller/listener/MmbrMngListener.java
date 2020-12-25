@@ -1,18 +1,14 @@
 package com.dql.controller.listener;
 
-import com.dql.I18.AppSize;
 import com.dql.controller.MyListener;
 import com.dql.dao.DataAccessor;
 import com.dql.dao.domain.User;
-import com.dql.I18.AppText;
+import com.dql.I18.AppEnum;
 import com.dql.view.componet.ComponentPool;
-import com.dql.view.componet.IClickButton;
 import com.dql.view.componet.IDialog;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,13 +28,13 @@ public class MmbrMngListener extends MyListener {
      * 必须要实现接口名
      */
     public MmbrMngListener() {
-        this.setListenerName(AppText.MEMBER_MANAGEMENT);
+        this.setListenerName(AppEnum.MEMBER_MANAGEMENT);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.table = componentPool.getTable(AppText.MEMBER_MANAGEMENT_TABLE);
-        IDialog dialog = componentPool.getDialog(AppText.MEMBER_MANAGEMENT_TABLE);
+        this.table = componentPool.getTable(AppEnum.MEMBER_MANAGEMENT_TABLE);
+        IDialog dialog = componentPool.getDialog(AppEnum.MEMBER_MANAGEMENT_TABLE);
         setTableData();
         dialog.setVisiable();
     }
