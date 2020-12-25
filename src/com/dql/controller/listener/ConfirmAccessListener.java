@@ -39,10 +39,25 @@ public class ConfirmAccessListener extends MyListener {
         // check is able to access equipment
         boolean exist = accessor.isExistByPhone(phone);
         if (exist) {
-            accessor.addLog(new AccessLog(new SimpleDateFormat("yyyy-MM-dd").format(new Date()), accessor.getUserByPhone(phone).getNumber()));
+            User user = accessor.getUserByPhone(phone);
+            // 如果是游客 次数要减少
+            //TODO 判断用户访问权限
+            if (user.getMemberType().equals(AppEnum.VISITOR)) {
+                int times = Integer.parseInt(user.getMemberEndTime());
+                if (times < 1) {
+                    JOptionPane.showMessageDialog(pool.container, "can not access,visitor times used", "access", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }else{
+                    times--;
+                    user.setMemberEndTime(times+"");
+                    accessor.updateVisitorTimes(user.getNumber(), times);
+                }
+            }
+            accessor.addLog(new AccessLog(new SimpleDateFormat("yyyy-MM-dd").format(new Date()), user.getNumber()));
             JOptionPane.showMessageDialog(pool.container, "ok to access", "access", JOptionPane.INFORMATION_MESSAGE);
             accessor.reWriteAccessLogData();
             pool.getJlabel(AppEnum.MEMBER_ACCESS).setText("今日访问量:"+ DataAccessor.getInstance().getAccessNum());
+
         }else{
             JOptionPane.showMessageDialog(pool.container, "can not access", "access", JOptionPane.INFORMATION_MESSAGE);
         }

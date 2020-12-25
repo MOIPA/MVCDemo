@@ -288,4 +288,13 @@ public class DataAccessor {
         long count = this.accessLogList.stream().filter(x -> x.getDate().equals(day)).count();
         return count+"";
     }
+
+    public void updateVisitorTimes(String number, int times) {
+        this.userList.forEach(x->{
+            if (x.getNumber().equals(number)) {
+                x.setMemberEndTime(times+"");
+            }
+        });
+        reWriteUserData();
+    }
 }
